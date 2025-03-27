@@ -8,7 +8,7 @@ const JobList = ({ onSelectJob }) => {
   useEffect(() => {
   
     axios
-      .get("http://localhost:5000/api/jobs")
+      .get("http://51.20.31.74:5000/api/jobs")
       .then((res) => {
         setJobs(res.data);
       })

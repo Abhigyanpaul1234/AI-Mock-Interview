@@ -39,11 +39,11 @@ const MockInterview = ({ job, onBack }) => {
     if (!interview) return;
 
     axios
-      .post("http://localhost:5000/api/interviews/submit", {
+      .post("http://51.20.31.74:5000/api/interviews/submit", {
         interviewId: interview._id,
         userCode: code,
       })
-      .then(() => axios.post("http://localhost:5000/api/interviews/review", {
+      .then(() => axios.post("http://51.20.31.74:5000/api/interviews/review", {
         interviewId: interview._id,
       }))
       .then((res) => {

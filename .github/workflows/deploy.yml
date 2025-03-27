@@ -16,10 +16,10 @@ jobs:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v0.1.7
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.EC2_USER }}
+          host: ${{ secrets.SSH_HOST }}   
+          username: ubuntu                
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.EC2_PORT || '22' }}
+          port: 22
           script: |
             cd /home/ubuntu/AI-Mock-Interview/backend
             echo "Pulling latest changes..."

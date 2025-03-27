@@ -1,0 +1,31 @@
+name: Deploy to AWS EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          port: ${{ secrets.EC2_PORT || '22' }}
+          script: |
+            cd /home/ubuntu/AI-Mock-Interview/backend
+            echo "Pulling latest changes..."
+            git pull origin main
+            echo "Installing dependencies..."
+            npm install
+            echo "Restarting the application using PM2..."
+            # Attempt to restart; if it fails (e.g., first run), start the app.
+            pm2 restart ai-mock-interview || pm2 start src/server.js --name ai-mock-interview

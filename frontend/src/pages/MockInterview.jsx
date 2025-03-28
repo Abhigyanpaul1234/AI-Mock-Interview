@@ -25,7 +25,7 @@ const MockInterview = ({ job, onBack }) => {
 
     const backendLang = languageMapping[selectedLang] || "C";
     axios
-      .post("http://localhost:5000/api/interviews/start", {
+      .post("https://mycbackend.duckdns.org/api/interviews/start", {
         jobId: job._id,
         language: backendLang
       })
@@ -39,11 +39,11 @@ const MockInterview = ({ job, onBack }) => {
     if (!interview) return;
 
     axios
-      .post("http://51.20.31.74:5000/api/interviews/submit", {
+      .post("https://mycbackend.duckdns.org/api/interviews/submit", {
         interviewId: interview._id,
         userCode: code,
       })
-      .then(() => axios.post("http://51.20.31.74:5000/api/interviews/review", {
+      .then(() => axios.post("https://mycbackend.duckdns.org/api/interviews/review", {
         interviewId: interview._id,
       }))
       .then((res) => {

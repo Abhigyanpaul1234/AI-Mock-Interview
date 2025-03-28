@@ -8,7 +8,7 @@ const JobList = ({ onSelectJob }) => {
   useEffect(() => {
   
     axios
-      .get("http://51.20.31.74:5000/api/jobs")
+      .get("https://mycbackend.duckdns.org/api/jobs")
       .then((res) => {
         setJobs(res.data);
       })
